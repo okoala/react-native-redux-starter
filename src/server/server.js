@@ -6,6 +6,10 @@ import mongoose from 'mongoose'
 import { graphql } from 'graphql'
 import bodyParser from 'body-parser'
 
+/********************************************/
+/*                  server                  */
+/********************************************/
+
 const middleware = ['csrf', 'static', 'error']
 
 const app = module.exports = express()
@@ -47,8 +51,8 @@ if (require.main === module) {
 /*                   API                    */
 /********************************************/
 
-// import { index, graph } from './controllers'
+import { index, graph } from './controllers'
 
-// app.get('/', index)
-// app.post('/graphql', graph)
+app.get('/', index)
+app.post('/graphql', graph)
 

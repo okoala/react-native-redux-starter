@@ -2,11 +2,11 @@ import mongoose from 'mongoose'
 
 export const todoSchema = new mongoose.Schema({
   text: {
-    type: String
+    type: String,
   },
-  createAt: {
-    type: Date
-  }
-})
+  createdAt: {
+    type: Date,
+  },
+});
 
-export default mongoose.model('Todo'. todoSchema)
+export default mongoose.model('Todo', todoSchema);
