@@ -8,7 +8,7 @@ export default class react_native_redux_starter extends React.Component {
   render () {
     return (
       <Provider store={configureStore()} >
-        {() => <Home/>}
+        {() => <Home endpoint='/graphql'/>}
       </Provider>
     )
   }
