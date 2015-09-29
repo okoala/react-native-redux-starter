@@ -8,7 +8,7 @@ let config = {
 	devtool: 'source-map',
 
 	entry: {
-		'index.ios': ['./src/index.js']
+		'index.ios': ['./src/app/index.js']
 	},
 
 	output: {
