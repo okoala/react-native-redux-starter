@@ -1,19 +1,18 @@
-/* jshint unused: false */
-'use strict';
+import errorHandler from 'errorhandler'
+import app from '../server'
 
-var errorHandler = require('errorhandler'),
-    app = require('../index');
+export default function () {
+  var logger = app.get('logger') || console
 
-module.exports = function () {
-    var logger = app.get('logger') || console;
-    return app.get('env') === 'production' ?
-        function (err, req, res, next) {
-            var msg = err.stack;
-            if (err.mod) msg = '[' + err.mod + '] ' + msg;
-            logger.error(msg);
+  return app.get('env') === 'production' ?
+    function (err, req, res, next) {
+      var msg = err.stack
+      if (err.mod) msg = '[' + err.mod + '] ' + msg
+      logger.error(msg)
 
-            if (err.status) res.statusCode = err.status;
-            if (res.statusCode < 400) res.statusCode = 500;
-            res.end();
-        } : errorHandler();
-};
+      if (err.status) res.statusCode = err.status
+      if (res.statusCode < 400) res.statusCode = 500
+
+      res.end()
+    } : errorHandler()
+}

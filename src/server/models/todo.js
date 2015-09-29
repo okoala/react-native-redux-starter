@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-export const todoSchema  = new mongoose.Schema({
+export const todoSchema = new mongoose.Schema({
   text: {
     type: String
   },
@@ -9,4 +9,4 @@ export const todoSchema  = new mongoose.Schema({
   }
 })
 
-export default mongoose.model('todo'. todoSchema)
+export default mongoose.model('Todo'. todoSchema)

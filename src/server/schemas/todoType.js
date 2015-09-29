@@ -70,7 +70,7 @@ export const todoMutations = {
       }
     },
     resolve: (obj, { text }, source, fieldsASTs) => {
-      return Todo.create({ text, createAt: new Date() })
+      return TodoModel.create({ text, createAt: new Date() })
     }
   }
 }
