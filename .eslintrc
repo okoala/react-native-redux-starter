@@ -7,10 +7,6 @@ env:
   es6: true
 
 globals:
-  # 设置fis的__uri, __inline为全局变量
-  __inline: true
-  __uri: true
-
   __DEV__: true
   __SERVER__: true
 
