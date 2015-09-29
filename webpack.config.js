@@ -1,8 +1,8 @@
-import fs from 'fs'
-import path from 'path'
-import webpack from 'webpack'
+var fs = require('fs')
+var path = require('path')
+var webpack = require('webpack')
 
-let config = {
+var config = {
 
 	debug: true,
 	devtool: 'source-map',
@@ -54,4 +54,4 @@ if (process.env.NODE_NEV = 'production') {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin())
 }
 
-export default config;
+module.exports = config
