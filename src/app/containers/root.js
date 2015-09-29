@@ -1,3 +1,4 @@
+import 'whatwg-fetch'
 import React from 'react-native'
 import Home from '../views/Home'
 import { Provider } from 'react-redux/native'
