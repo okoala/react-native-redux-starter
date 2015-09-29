@@ -24,6 +24,7 @@ function serialize(obj) {
 
 function callApi(api, method = 'GET', params) {
   let apiUrl = api;
+
   const apiData = {
     method: method,
     headers: {
@@ -34,22 +35,16 @@ function callApi(api, method = 'GET', params) {
 
   if (params) {
     if (method === 'POST') {
-      apiUrl += '?token=' + sessionStorage.__token;
       apiData.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-      apiData.body = serialize(params);
+      apiData.body = params.body ? params.body : serialize(params);
     } else if (method === 'GET') {
-      params.token = sessionStorage.__token;
       apiUrl += '?' + serialize(params);
     }
-  } else {
-    apiUrl += '?token=' + sessionStorage.__token;
   }
 
   return fetch(apiUrl, apiData)
-    .then(response =>
-      response.json().then(json => ({ json, response }))
-    )
-    .then(({ json, response }) => {
+    .then(res => res.json())
+    .then((json, response) => {
       if (!response.ok) {
         return Promise.reject(json);
       }
@@ -58,7 +53,7 @@ function callApi(api, method = 'GET', params) {
     });
 }
 
-export const CALL_API = Symbol('Call API');
+export const CALL_GRAPHQL = Symbol('Call GRAPHQL');
 
 export default store => next => action => {
   const callAPI = action[CALL_API];
@@ -67,16 +62,7 @@ export default store => next => action => {
     return next(action);
   }
 
-  let { api } = callAPI;
   const { method, params, types, passMiddleware } = callAPI;
-
-  if (typeof api === 'function') {
-    api = api(store.getState());
-  }
-
-  if (typeof api !== 'string') {
-    throw new Error('Specify a string endpoint URL.');
-  }
 
   const actionWith = function(data, payload) {
     const finalPayload = { ...action.payload, ...payload };
@@ -92,7 +78,7 @@ export default store => next => action => {
   // 取消请求前的action.
   // next(actionWith({type: requestType}));
 
-  return callApi(api, method, params)
+  return callApi('/graphql', method, params)
     .then(response => {
       // 只有response的code为0才算是正常的数据。
       if (response.code === 0) {
