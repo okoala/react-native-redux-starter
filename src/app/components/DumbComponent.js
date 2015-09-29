@@ -7,14 +7,6 @@ const {
   TouchableHighlight
 } = React
 
-const styles = StyleSheet.create({
-  dummy: {
-    fontSize: 20,
-    padding: 15,
-    backgroundColor: '#F5F5F5'
-  }
-})
-
 export defualt class DumbComponent extends React.Component {
   static propTypes = {
     test: React.PropTypes.func,
@@ -39,3 +31,11 @@ export defualt class DumbComponent extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  dummy: {
+    fontSize: 20,
+    padding: 15,
+    backgroundColor: '#F5F5F5'
+  }
+})

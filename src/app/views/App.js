@@ -2,12 +2,11 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
-'use strict';
-
 import React from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect, dispatch } from 'react-redux/native'
-import * as HomeAction from '../../actions/home'
+import * as TodoAction from '../../actions/todo'
+import DumbComponent from '../components/DumbComponent'
 
 const {
   StyleSheet,
@@ -19,15 +18,21 @@ const {
   state => ({
     foo: state.foo
   }),
-  dispatch => bindActionCreators(HomeAction, dispatch)
+  dispatch => bindActionCreators(TodoAction, dispatch)
 )
-export default class ExampleApp extends React.Component {
+export default class AppView extends React.Component {
+  static propTypes = {
+    foo: React.PropTypes.object,
+    dispatch: React.PropTypes.func
+  }
+
   constructor(props) {
     super(props)
   }
 
   render() {
     const { foo, dispatch } = this.props
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
