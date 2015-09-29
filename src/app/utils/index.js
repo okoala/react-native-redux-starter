@@ -8,12 +8,46 @@ export function createConstants (...constants) {
   }, {})
 }
 
+export function map (obj, predicate) {
+  const result = {}
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      result[key] = predicate(obj[key], key)
+    }
+  }
+
+  return result
+}
+
 export function createReducer (initialState, reducerMap) {
   return (state = initialState, action) => {
     const reducer = reducerMap[action.type]
 
     return reducer ? reducer(state, action.payload) : state
   }
+}
+
+export function reduce (obj, predicate, initial) {
+  let acc = initial
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      acc = predicate(acc, obj[key], key)
+    }
+  }
+
+  return acc
+}
+
+exprot function getDisplayName (ReactComponent) {
+  return ReactComponent.displayName || ReactComponent.name || 'Component'
+}
+
+export function compileQuery (query, params) {
+  return reduce(params, (acc, val, key) => {
+    return acc.replace(new RegExp('<' + key + '>', 'g'), val)
+  }, query)
 }
 
 export function debouncedFetch (handlerFn) {
