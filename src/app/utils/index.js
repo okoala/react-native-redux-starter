@@ -112,6 +112,7 @@ export function createGraphQLContainer(ComposedComponent, { queries = {}, queryP
 export class GraphQLConnector extends Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
+    dispatch: PropTypes.func,
     children: PropTypes.any.isRequired
   }
 
