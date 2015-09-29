@@ -1,2 +1,9 @@
 # react-native-redux-starter
-react native redux demo
+
+##技术栈
+
+ - react-native
+ - redux
+ - graphql
+ - express
+ - mongodb
