@@ -17,7 +17,8 @@ const {
 
 @connect(
   state => ({
-    foo: state.foo
+    foo: state.todo.foo,
+    test: state.test
   }),
   dispatch => bindActionCreators(TodoAction, dispatch)
 )

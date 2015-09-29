@@ -1,6 +1,10 @@
 import { CALL_GRAPHQL } from '../middleware/api';
 import * as Action from '../constants/ActionTypes'
 
+export function test (text) {
+  return { type: Action.TEST, text }
+}
+
 export function createTodo (text) {
   const opts = {
     body: JSON.stringify({

@@ -1,4 +1,4 @@
-import React from 'react-native'
+import React, { Component, PropTypes } from 'react-native'
 
 const {
   StyleSheet,
@@ -7,10 +7,10 @@ const {
   TouchableHighlight
 } = React
 
-export defualt class DumbComponent extends React.Component {
+export defualt class DumbComponent extends Component {
   static propTypes = {
-    test: React.PropTypes.func,
-    foo: React.PropTypes.object
+    test: PropTypes.func,
+    foo: PropTypes.object
   }
 
   constructor (props) {
