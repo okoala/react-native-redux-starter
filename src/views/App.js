@@ -34,13 +34,13 @@ export default class AppView extends Component {
   }
 
   render() {
-    const { foo, dispatch } = this.props
+    const { foo, dispatch, endpoint } = this.props
 
     return (
       <GraphQLConnector endpoint={endpoint} dispatch={dispatch}>
         <View style={styles.container}>
           <Text style={styles.welcome}>
-            React Native Starter is Running Hot!
+            React Native Redux Starter is Running Hot!
           </Text>
           <Text style={styles.instructions}>
             To get started, edit index.ios.js

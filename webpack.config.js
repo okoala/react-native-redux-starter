@@ -35,7 +35,7 @@ var config = {
 
 // Hot loader
 if (process.env.HOT) {
-  config.devtool = 'eval' // Speed up incremental builds
+  // config.devtool = 'eval' // Speed up incremental builds
   config.entry['index.ios'].unshift('react-native-webpack-server/hot/entry')
   config.entry['index.ios'].unshift('webpack/hot/only-dev-server')
   config.entry['index.ios'].unshift('webpack-dev-server/client?http://localhost:8082')

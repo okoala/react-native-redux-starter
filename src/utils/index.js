@@ -133,6 +133,8 @@ export class GraphQLConnector extends Component {
   onGraphQLRefresh () {
     const { endpoint, dispatch, children } = this.props
 
+    if (typeof children.type.getQuery !== 'function') return
+
     const query = reduce(children.type.getQuery(), (acc, val, key) => {
       return acc + '\n' + key + ': ' + val;
     }, '')
