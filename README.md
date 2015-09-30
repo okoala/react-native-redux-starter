@@ -13,7 +13,7 @@ npm install
 ## 开发
 
 ```bash
-npm run hot
+npm run dev
 open ./ios/react_native_redux_starter.xcodeproj
 ```
 
