@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/react-native-webpack-server start",
-    "hot": "HOT=1 ./node_modules/.bin/react-native-webpack-server start --hot",
+    "start": "npm run server & ./node_modules/.bin/react-native-webpack-server start",
+    "dev": "npm run nodemon & HOT=1 ./node_modules/.bin/react-native-webpack-server start --hot",
+    "server": "pm2 startOrReload ./server/index.js",
+    "nodemon": "nodemon --debug ./server/index.js",
     "bundle": "./node_modules/.bin/react-native-webpack-server bundle"
   },
   "dependencies": {
