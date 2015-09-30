@@ -39,7 +39,7 @@ if (process.env.HOT) {
   config.entry['index.ios'].unshift('webpack-dev-server/client?http://localhost:8082')
   config.output.publicPath = 'http://localhost:8082/'
   config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
-  config.module.loaders[0].query.plguins.push('react-transform')
+  config.module.loaders[0].query.plugins.push('react-transform')
   config.module.loaders[0].query.extra = {
     'react-transform': [{
       target: 'react-transform-hmr',
