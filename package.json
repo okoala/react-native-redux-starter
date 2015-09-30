@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "start": "./node_modules/.bin/react-native-webpack-server start",
-    "hot": "HOT=1 ./node_modules/.bin/react-native-webpack-server start",
-    "bundle": "./node_modules/.bin/react-native-webpack-server bundle",
-    "lint": "eslint ./"
+    "hot": "HOT=1 ./node_modules/.bin/react-native-webpack-server start --hot",
+    "bundle": "./node_modules/.bin/react-native-webpack-server bundle"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
