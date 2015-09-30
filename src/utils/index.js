@@ -87,6 +87,7 @@ export function createGraphQLContainer(ComposedComponent, { queries = {}, queryP
 
     componentWillMount () {
       this.context.graphQLRefresh()
+      console.log('true')
     }
 
     setQueryParams (nextParams) {

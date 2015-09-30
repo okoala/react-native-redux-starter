@@ -1,0 +1,38 @@
+import React, { Component, PropTypes } from 'react-native'
+
+const {
+  TextInput
+} = React
+
+export default class TodoInput extends Component {
+  static propTypes = {
+    createTodo: PropTypes.func.isRequired
+  }
+
+  constructor () {
+    super()
+
+    this.state = {
+      text: ''
+    }
+  }
+
+  onEnter (text) {
+    if (text !== '') {
+      this.props.createTodo(text)
+      this.setState({text: ''})
+    }
+  }
+
+  render () {
+    return (
+      <TextInput
+        autoFocus={true}
+        placeholder='输入todo'
+        value={this.state.text}
+        onChangeText={(text) => this.setState({text})}
+        onSubmitEditing={this.onEnter}
+      />
+    )
+  }
+}

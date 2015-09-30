@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect, dispatch } from 'react-redux/native'
 import { GraphQLConnector } from '../utils'
 import * as TodoAction from '../actions/todo'
-import DumbComponent from '../components/DumbComponent'
+import TodoList from '../components/TodoList'
 
 const {
   StyleSheet,
@@ -15,17 +15,12 @@ const {
   View,
 } = React;
 
-@connect(
-  state => ({
-    foo: state.todo.foo,
-    test: state.test
-  }),
-  dispatch => bindActionCreators(TodoAction, dispatch)
-)
+@connect(state => state)
 export default class AppView extends Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
-    foo: PropTypes.string
+    dispatch: PropTypes.func.isRequired,
+    todo: PropTypes.object
   }
 
   constructor(props) {
@@ -33,7 +28,8 @@ export default class AppView extends Component {
   }
 
   render() {
-    const { foo, dispatch, endpoint } = this.props
+    const { dispatch, todo, endpoint } = this.props
+    const bindedActions = bindActionCreators(TodoAction, dispatch)
 
     return (
       <GraphQLConnector endpoint={endpoint} dispatch={dispatch}>
@@ -48,10 +44,7 @@ export default class AppView extends Component {
             Press Cmd+R to reload,{'\n'}
             Cmd+D or shake for dev menu
           </Text>
-          <DumbComponent
-            foo={foo}
-            test={(text='hi') => dispatch(test(text))}
-          />
+          <TodoList {...todo} actions={bindedActions} />
         </View>
       </GraphQLConnector>
     )
