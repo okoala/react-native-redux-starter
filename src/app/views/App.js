@@ -6,7 +6,7 @@ import React, { Component, PropTypes } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect, dispatch } from 'react-redux/native'
 import { GraphQLConnector } from '../utils'
-import * as TodoAction from '../../actions/todo'
+import * as TodoAction from '../actions/todo'
 import DumbComponent from '../components/DumbComponent'
 
 const {

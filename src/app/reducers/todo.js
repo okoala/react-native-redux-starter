@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { createReducer } from 'utils';
+import { createReducer } from '../utils';
 
 import * as Action from '../constants/ActionTypes';
 import * as STATUS from '../constants/Status';

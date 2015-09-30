@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react-native'
 import { GRAPHQL_ACTION } from '../constants/ActionTypes'
 
 export function createConstants (...constants) {
@@ -40,7 +40,7 @@ export function reduce (obj, predicate, initial) {
   return acc
 }
 
-exprot function getDisplayName (ReactComponent) {
+export function getDisplayName (ReactComponent) {
   return ReactComponent.displayName || ReactComponent.name || 'Component'
 }
 

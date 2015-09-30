@@ -7,7 +7,7 @@ const {
   TouchableHighlight
 } = React
 
-export defualt class DumbComponent extends Component {
+export default class DumbComponent extends Component {
   static propTypes = {
     test: PropTypes.func,
     foo: PropTypes.object
