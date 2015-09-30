@@ -4,38 +4,40 @@ var webpack = require('webpack')
 
 var config = {
 
-	debug: true,
-	devtool: 'source-map',
+  debug: true,
 
-	entry: {
-		'index.ios': ['./src/app/index.js']
-	},
+  devtool: 'source-map',
 
-	output: {
-		path: path.resolve(__dirname, 'build'),
-		filename: '[name].js'
-	},
+  entry: {
+    'index.ios': ['./src/app/index.js'],
+  },
 
-	module: {
-		loaders: [{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			loader: 'babel',
-			query: {
-				stage: 0,
-				plugins: []
-			}
-		}]
-	},
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: '[name].js',
+  },
 
-	plugins: []
+  module: {
+    loaders: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        stage: 0,
+        plugins: []
+      }
+    }]
+  },
+
+  plugins: [],
+
 }
 
-// 如果是hot loader
+// Hot loader
 if (process.env.HOT) {
-  config.devtool = 'eval',
-  config.entry['index.ios'].unshift('react-native-webpack-server/hot/entry'),
-  config.entry['index.ios'].unshift('webpack/hot/only-dev-server'),
+  config.devtool = 'eval' // Speed up incremental builds
+  config.entry['index.ios'].unshift('react-native-webpack-server/hot/entry')
+  config.entry['index.ios'].unshift('webpack/hot/only-dev-server')
   config.entry['index.ios'].unshift('webpack-dev-server/client?http://localhost:8082')
   config.output.publicPath = 'http://localhost:8082/'
   config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
@@ -49,7 +51,8 @@ if (process.env.HOT) {
   }
 }
 
-if (process.env.NODE_NEV = 'production') {
+// Production config
+if (process.env.NODE_ENV === 'production') {
   config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin())
   config.plugins.push(new webpack.optimize.UglifyJsPlugin())
 }
