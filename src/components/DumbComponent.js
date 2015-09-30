@@ -10,7 +10,7 @@ const {
 export default class DumbComponent extends Component {
   static propTypes = {
     test: PropTypes.func,
-    foo: PropTypes.object
+    foo: PropTypes.string
   }
 
   constructor (props) {

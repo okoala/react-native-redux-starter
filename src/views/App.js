@@ -25,8 +25,7 @@ const {
 export default class AppView extends Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    foo: PropTypes.object
+    foo: PropTypes.string
   }
 
   constructor(props) {
