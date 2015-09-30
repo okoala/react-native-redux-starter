@@ -27,3 +27,15 @@ npm run bundle
 ```
 
 修改 AppDelegate.m 加载本地的 main.jsbundle.
+
+
+## 技术栈
+
+```
+ - React Native
+ - Redux
+ - GraphQL
+ - Webpack
+ - Hot Reload
+ - Express
+```
