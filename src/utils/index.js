@@ -80,20 +80,19 @@ export function createGraphQLContainer(ComposedComponent, { queries = {}, queryP
       graphQLRefresh: PropTypes.func.isRequired
     }
 
-    static getQuery (key) {
+    static getQuery = (key) => {
       const compiledQueries = map(queries, q => compileQuery(q, _queryParams))
-      return !key ? compiledQueries : '... on' + compiledQueries[key]
+      return !key ? compiledQueries : '... on ' + compiledQueries[key]
     }
 
     componentWillMount () {
       this.context.graphQLRefresh()
-      console.log('true')
     }
 
-    setQueryParams (nextParams) {
+    setQueryParams = (nextParams) => {
       _queryParams = {
         ...queryParams,
-        ...nextParams
+        ...nextParams,
       }
 
       this.forceUpdate()
@@ -131,7 +130,7 @@ export class GraphQLConnector extends Component {
     this.onGraphQLRefresh()
   }
 
-  onGraphQLRefresh () {
+  onGraphQLRefresh = () => {
     const { endpoint, dispatch, children } = this.props
 
     if (typeof children.type.getQuery !== 'function') return
