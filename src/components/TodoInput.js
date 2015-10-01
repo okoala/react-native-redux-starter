@@ -27,7 +27,6 @@ export default class TodoInput extends Component {
   render () {
     return (
       <TextInput
-        autoFocus={true}
         placeholder='输入todo'
         value={this.state.text}
         onChangeText={(text) => this.setState({text})}
