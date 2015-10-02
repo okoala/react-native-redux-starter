@@ -29,6 +29,7 @@ export default class TodoInput extends Component {
       <TextInput
         placeholder='输入todo'
         value={this.state.text}
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
         onChangeText={(text) => this.setState({text})}
         onSubmitEditing={this.onEnter}
       />

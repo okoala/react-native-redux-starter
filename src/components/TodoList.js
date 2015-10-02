@@ -4,6 +4,7 @@ import TodoItem from './TodoItem'
 import { createGraphQLContainer as createContainer } from '../utils'
 
 const {
+  Text,
   View,
   TextInput
 } = React
@@ -23,7 +24,11 @@ class TodoList extends Component {
 
     return (
       <View>
-        <TodoInput createTodo={createTodo} />
+        <Text>
+          请输入内容:
+        </Text>
+        <TodoInput
+          createTodo={createTodo} />
         {this.props.todos.map(todo => {
           <TodoItem key={todo._id} todo={todo} />
         })}
