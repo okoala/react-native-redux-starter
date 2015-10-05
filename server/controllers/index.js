@@ -14,6 +14,8 @@ export function index (req, res) {
 }
 
 export function graph (req, res) {
+  console.log('true')
+
   const { query, params } = req.body
 
   graphql(schemas, query, '', params)

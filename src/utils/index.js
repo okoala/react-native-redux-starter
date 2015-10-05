@@ -154,13 +154,16 @@ export class GraphQLConnector extends Component {
       body: JSON.stringify({ query: '{' + query + '}'})
     }
 
-    fetch(endpoint, opts)
+    fetch(`http://127.0.0.1:3000/${endpoint}`, opts)
       .then(res => res.json())
       .then(json => {
         dispatch({
           type: GRAPHQL_ACTION,
           payload: json.data
         })
+      })
+      .catch(err => {
+        console.error(err)
       })
   }
 
