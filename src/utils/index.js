@@ -73,7 +73,8 @@ export function debouncedFetch (handlerFn) {
 export function createGraphQLContainer(ComposedComponent, { queries = {}, queryParams = {} }) {
   let _queryParams = { ...queryParams }
 
-  return class extends Component {
+  class GraphQLContainer extends Component {
+
     static displayName = `GraphQLContainer(${getDisplayName(ComposedComponent)})`
 
     static contextTypes = {
@@ -86,7 +87,7 @@ export function createGraphQLContainer(ComposedComponent, { queries = {}, queryP
     }
 
     componentWillMount () {
-      this.context.graphQLRefresh()
+      this.context.graphQLRefresh(GraphQLContainer)
     }
 
     setQueryParams = (nextParams) => {
@@ -96,7 +97,7 @@ export function createGraphQLContainer(ComposedComponent, { queries = {}, queryP
       }
 
       this.forceUpdate()
-      this.context.graphQLRefresh()
+      this.context.graphQLRefresh(GraphQLContainer)
     }
 
     render () {
@@ -107,6 +108,8 @@ export function createGraphQLContainer(ComposedComponent, { queries = {}, queryP
       )
     }
   }
+
+  return GraphQLContainer
 }
 
 export class GraphQLConnector extends Component {
@@ -130,12 +133,15 @@ export class GraphQLConnector extends Component {
     this.onGraphQLRefresh()
   }
 
-  onGraphQLRefresh = () => {
-    const { endpoint, dispatch, children } = this.props
+  onGraphQLRefresh = (childProps) => {
+    const { endpoint, dispatch } = this.props
+    let { children } = this.props
 
-    if (typeof children.type.getQuery !== 'function') return
+    let getQuery = children.type && children.type.getQuery ? children.type.getQuery : (childProps ? childProps.getQuery : null)
 
-    const query = reduce(children.type.getQuery(), (acc, val, key) => {
+    if (!getQuery) return
+
+    const query = reduce(getQuery(), (acc, val, key) => {
       return acc + '\n' + key + ': ' + val;
     }, '')
 
