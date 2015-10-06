@@ -1,4 +1,4 @@
-import { CALL_GRAPHQL } from '../middleware/api';
+import { CALL_GRAPHQL } from '../middleware/api'
 import * as Action from '../constants/ActionTypes'
 
 export function test (text) {
@@ -27,5 +27,5 @@ export function createTodo (text) {
       types: [Action.GRAPHQL_ACTION],
       params: opts
     }
-  });
+  })
 }
